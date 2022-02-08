@@ -1,0 +1,39 @@
+// 점수 누적을 기록하기 위한 score와, 합을 기록하기 위한 sum 두 개를 설정해줘야 한다.
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int N;
+	string s;
+
+	cin >> N;
+	
+	string* arr = new string[N];
+
+	for (int i = 0; i < N; i++) {
+		cin >> s;
+		arr[i] = s;
+	}
+
+	for (int i = 0; i < N; i++) {
+		int sum = 0;
+		int score = 0;
+
+		for (int j = 0; j < size(arr[i]); j++) {
+			if (arr[i][j] == 'O') {
+				++score;
+				sum += score;
+			}
+
+			if (arr[i][j] == 'X')
+				score = 0;
+		}
+
+		cout << sum << '\n';
+	}
+
+	delete[] arr;
+}
