@@ -1,0 +1,51 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int a = 1;
+	int d = 0;
+	int input;
+
+	cin >> input;
+
+	// 1 7 19 37
+	//  6 12 18
+
+	while (1) {
+		if (input == 1) {
+			cout << 1;
+			break;
+		}
+
+		a += 6 * d; // 초항 갱신
+
+		if (a < input && input <= a + 6 * (d + 1)) {
+			cout << d + 2;
+			break;
+		}
+
+		++d;
+	}
+}
+
+
+// 다른 풀이
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int number;
+    
+    cin >> number;
+    
+    int i = 0;
+    
+    for(int sum=2; sum <= number; i++)
+        sum += 6*i;
+    if(number == 1) i=1;
+    cout << i;
+}
