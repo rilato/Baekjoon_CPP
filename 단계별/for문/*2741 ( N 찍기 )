@@ -1,4 +1,4 @@
-// ios_base::sync_with_stdio(false); / cin.tie(NULL);를 추가하면 4ms의 시간 이득을 볼 수 있었다.
+// ios_base::sync_with_stdio(false); / cin.tie(NULL);를 추가하면 4ms의 시간 이득을 볼 수 있다.
 // 하지만 가장 중요한 것은 endl을 쓰지 않고 "\n"을 써주는 것이 획기적인 속도 향상에 도움이 된다는 것이다.
 
 
