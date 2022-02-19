@@ -1,0 +1,25 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	int input;
+	int num;
+
+	cin >> input;
+
+	int* arr = new int[input];
+
+	for (int i = 0; i < input; i++) {
+		cin >> num;
+		arr[i] = num;
+	}
+
+	sort(arr, arr + input);
+
+	for (int i = 0; i < input; i++)
+		cout << arr[i] << '\n';
+	
+	delete[] arr;
+}
