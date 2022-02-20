@@ -1,0 +1,32 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+	int input, age;
+	string name;
+
+	// vector에서 다시 한번 배열을 만들어 이차원 배열을 만들었다.
+	// 201은 행이 된다.
+	vector<string> nameVector[201];
+
+	cin >> input;
+
+	for (int i = 0; i < input; i++) {
+		cin >> age >> name;
+		// 이차원 배열이므로, 이렇게 값을 넣는다.
+		// 넣어진 값은 열이 된다.
+		nameVector[age].push_back(name);
+	}
+
+	for (int i = 0; i < 201; i++)
+		// size()에서 j가 아닌 i다!!
+		for (int j = 0; j < nameVector[i].size(); j++)
+			cout << i << ' ' << nameVector[i][j] << '\n';
+}
