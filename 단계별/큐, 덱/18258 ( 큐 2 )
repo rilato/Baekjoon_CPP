@@ -1,3 +1,6 @@
+// forward는 컴퓨터가 못알아먹으므로 foward를 썼다.
+// 여기에 옮길 때만 forward로 적었다.
+
 #include<iostream>
 
 using namespace std;
