@@ -4,7 +4,7 @@ using namespace std;
 
 int queue[2000000];
 int rear = -1;	// pop을 위함
-int foward = -1;	// push를 위함
+int forward = -1;	// push를 위함
 
 void push(int x);
 int pop();
@@ -56,31 +56,31 @@ void push(int x) {
 }
 
 int pop() {
-	if (rear - foward == 0)
+	if (rear - forward == 0)
 		return -1;
-	return queue[++foward];
+	return queue[++forward];
 }
 
 void size() {
-	cout << rear - foward << '\n';
+	cout << rear - forward << '\n';
 }
 
 void empty() {
-	if (rear - foward == 0)
+	if (rear - forward == 0)
 		cout << 1 << '\n';
 	else
 		cout << 0 << '\n';
 }
 
 void front() {
-	if (rear - foward == 0)
+	if (rear - forward == 0)
 		cout << -1 << '\n';
 	else
-		cout << queue[foward + 1] << '\n';
+		cout << queue[forward + 1] << '\n';
 }
 
 void back() {
-	if (rear - foward == 0)
+	if (rear - forward == 0)
 		cout << -1 << '\n';
 	else
 		cout << queue[rear] << '\n';
