@@ -1,6 +1,139 @@
 // 실제로 값을 뒤집거나 삭제하지 않았지만, 출력을 뒤집거나 삭제한 것처럼 보이게 함으로써 정답을 출력한다.
 
-// 뭔지 모를 반례 때문에 계속해서 틀렸다고 한다.
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+void inputNumber(string arr, vector<int> &v, bool &isEmpty);
+void functionR(bool &flag, int &size, bool &isEmpty);
+void functionD(bool &flag, bool &isError, bool &isEmpty, int &startIndex, int &endIndex, int &size);
+void print(vector<int> v, int startIndex, int endIndex, bool flag, bool isEmpty, bool isError);
+
+int main()
+{
+	int testCase, num;
+	string commands, arr;
+	char command;
+
+	cin >> testCase;
+
+	for (int i = 0; i < testCase; i++) {
+		bool flag = true;	// true면 정방향
+		bool isError = false;
+		bool isEmpty = false;
+		vector <int> v;
+
+		cin >> commands >> num >> arr;
+
+		int size = num;
+		int startIndex = 0;
+		int endIndex = num - 1;
+
+		inputNumber(arr, v, isEmpty);
+		
+		for (int j = 0; j < commands.size(); j++) {
+			command = commands[j];
+
+			if (command == 'R')
+				functionR(flag, size, isEmpty);
+
+			if (command == 'D')
+				functionD(flag, isError, isEmpty, startIndex, endIndex, size);
+		}
+
+		print(v, startIndex, endIndex, flag, isEmpty, isError);
+	}
+}
+
+void inputNumber(string arr, vector<int> &v, bool &isEmpty) {
+	string number = "";
+
+	for (int j = 0; j < arr.size(); j++) {
+		if (arr[j] == '[' || arr[j] == ',' || arr[j] == ']')
+			continue;
+
+		while (1) {
+			if (arr[j] == ',' || arr[j] == ']') {
+				j--;
+				break;
+			}
+
+			number += arr[j++];
+		}
+
+		v.push_back(stoi(number));
+
+		number = "";
+	}
+
+	if (v.empty())
+		isEmpty = true;
+}
+
+void functionR(bool &flag, int &size, bool &isEmpty) {
+	// size가 0인 경우
+	if (!size)
+		isEmpty = true;
+
+	if (flag) {
+		flag = false;
+		return;
+	}
+
+	if (!flag) {
+		flag = true;
+		return;
+	}
+}
+
+void functionD(bool &flag, bool &isError, bool &isEmpty, int &startIndex, int &endIndex, int &size) {
+	--size;
+
+	if (size < 0) {
+		isError = true;
+		return;
+	}
+
+	if (size == 0) {
+		isEmpty = true;
+	}
+
+	if (flag)
+		++startIndex;
+
+	if (!flag)
+		--endIndex;
+}
+
+void print(vector<int> v, int startIndex, int endIndex, bool flag, bool isEmpty, bool isError) {
+	if (isError) {
+		cout << "error\n";
+		return;
+	}
+
+	if (isEmpty) {
+		cout << "[]\n";
+		return;
+	}
+
+	cout << '[';
+
+	if (flag) {
+		for (int i = startIndex; i < endIndex; i++)
+			cout << v[i] << ',';
+		cout << v[endIndex] << "]\n";
+	}
+
+	else {
+		for (int i = endIndex; i > startIndex; i--)
+			cout << v[i] << ',';
+		cout << v[startIndex] << "]\n";
+	}
+}
+
+// 1 RD 0 [] or 1 RD 1 [10] 반례 때문에 계속해서 틀렸다고 한다.
 
 #include <iostream>
 #include <string>
