@@ -104,14 +104,14 @@ int main()
 	// 따라서 left는 1로 설정한다.
 	long long left = 1;
 	long long right = max;
-	// 가장 작은 숫자의 길이를 기준으로, 나머지 길이들을 몇 개로 자를 수 있는지 확인한다.
+	// 가장 큰 숫자의 길이를 기준으로, 일단 mid 값을 설정한다.
 	long long mid = max;
 
 	while (left <= right) {
 		count = 0;
 
 		for (int i = 0; i < inputK; i++) {
-			// 가장 작은 숫자의 길이를 기준으로, 나머지 길이들을 몇 개로 자를 수 있는지 확인한다.
+			// 중간 값 길이를 기준으로, 나머지 길이들을 몇 개로 자를 수 있는지 확인한다.
 			count += (K[i] / mid);
 		}
 
@@ -124,7 +124,7 @@ int main()
 		if (count < inputN) {
 			right = mid - 1;
 		}
-
+		
 		mid = (left + right) / 2;
 	}
 
