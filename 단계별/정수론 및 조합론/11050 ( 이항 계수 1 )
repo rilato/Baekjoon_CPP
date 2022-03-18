@@ -25,3 +25,36 @@ int main() {
 
 	cout << numerator / denominator;
 }
+
+
+// 다른 풀이
+// nCk = n! / (k! * (n-k)!) 이용 및 재귀 용
+
+#include<iostream>
+ 
+using namespace std;
+ 
+//재귀 이용.
+int Factorial(int num){
+    if(num == 1 || num == 0){
+        return 1;
+        
+    }else{
+        return Factorial(num-1) * num;
+    }
+ 
+}
+ 
+int main(void){
+    
+    int n, k;
+ 
+    cin >> n >> k;
+ 
+    cout << Factorial(n) / (Factorial(k) * Factorial(n-k));
+    
+    return 0;    
+}
+
+
+출처: https://blockdmask.tistory.com/93 [개발자 지망생]
