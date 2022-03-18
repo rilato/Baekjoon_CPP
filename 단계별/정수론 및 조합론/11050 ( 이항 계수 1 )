@@ -1,0 +1,27 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+	int N, K, breakPoint;
+	int numerator = 1;
+	int denominator = 1;
+	int count = 0;
+
+	cin >> N >> K;
+
+	breakPoint = K;
+
+	while (count != breakPoint) {
+		count++;
+
+		numerator *= N--;
+		denominator *= K--;
+	}
+
+	cout << numerator / denominator;
+}
