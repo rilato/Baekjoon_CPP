@@ -1,3 +1,7 @@
+// 문제가 무슨 말인지 이해가 잘 안됐다.
+// 그래서 다른 사람의 풀이를 참고하였다.
+// https://velog.io/@sw0000j/%EB%B0%B1%EC%A4%80C-1059-%EC%A2%8B%EC%9D%80-%EA%B5%AC%EA%B0%84
+
 #include <iostream>
 #include <algorithm>
 #include <vector>
