@@ -1,3 +1,6 @@
+// 15649와 비슷해 보이지만, bool 배열을 사용하지 않는다.
+// 백트래킹의 구조를 파악한다.
+
 #include<iostream>
 #include<vector>
 
