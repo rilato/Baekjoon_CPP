@@ -1,0 +1,41 @@
+// 재귀를 바탕으로 하는 백트래킹 방법을 숙지한다
+// vector를 for문으로 출력할 때, auto를 이용한 출력을 확인한다.
+
+#include<iostream>
+#include<vector>
+
+using namespace std;
+
+int N, M;
+bool visited[9] = {0,};
+vector <int> v;
+
+void backTracking();
+
+int main(void) {
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    cin >> N >> M;
+    backTracking();
+}
+
+void backTracking() {
+    if (v.size() == M) {
+        for (auto &k : v)
+            cout << k << " ";
+        cout << "\n";
+        return;
+    }
+
+    for (int i = 1; i <= N; i++) {
+        if (!visited[i]) {
+            visited[i] = true;
+            v.push_back(i);
+            backTracking();
+            visited[i] = false;
+            v.pop_back();
+        }
+    }
+}
