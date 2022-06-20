@@ -1,0 +1,72 @@
+// 틀린 풀이
+
+// student의 수가 sum을 통해 더해지면서 long long의 범위를 초과할 수 있기 때문에
+// 나머지를 먼저 구하고 거기에 더해서 다시 sum을 구하는 식으로 해결해야 한다.
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+	int N, student;
+
+	cin >> N;
+
+	for (int i = 0; i < N; i++) {
+		cin >> student;
+
+		long long num;
+		long long sum = 0;
+
+		for (int j = 0; j < student; j++) {
+			cin >> num;
+
+			sum += num;
+		}
+
+		if (sum % student)
+			cout << "NO\n";
+		else
+			cout << "YES\n";
+	}
+}
+
+
+
+// 맞은 풀이
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+	int N, student;
+
+	cin >> N;
+
+	for (int i = 0; i < N; i++) {
+		cin >> student;
+
+		long long num;
+		long long sum = 0;
+
+		for (int j = 0; j < student; j++) {
+			cin >> num;
+
+			sum = (sum + num) % student;
+		}
+
+		if (sum % student)
+			cout << "NO\n";
+		else
+			cout << "YES\n";
+	}
+}
