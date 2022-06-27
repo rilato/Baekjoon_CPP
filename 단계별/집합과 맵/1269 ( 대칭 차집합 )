@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+	int A, B, sum, num;
+	int count = 0;
+	vector <int> v;
+
+	cin >> A >> B;
+
+	sum = A + B;
+
+	for (int i = 0; i < A; i++) {
+		cin >> num;
+
+		v.push_back(num);
+	}
+
+	sort(v.begin(), v.end());
+
+	for (int i = 0; i < B; i++) {
+		cin >> num;
+
+		count += binary_search(v.begin(), v.end(), num);
+	}
+
+	cout << sum - 2 * count;
+}
