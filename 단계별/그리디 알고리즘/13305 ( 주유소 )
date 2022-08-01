@@ -1,3 +1,7 @@
+// int와 int의 곱 연산을 저장하고 싶을 때 연산한 우변의 결과 값이 int의 범위를 넘어가서
+// 제대로 인식이 안될 수도 있는 듯 함
+// 그래서 안전하게 long long 쓰자!
+
 #include <iostream>
 #include <vector>
 
