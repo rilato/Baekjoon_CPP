@@ -1,0 +1,49 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);	
+	
+	int N, num;
+	int min = 1000000000;
+	long long sum = 0;
+
+	cin >> N;
+
+	// 이동 거리를 저장하는, 몇 리터를 쓰는지를 저장하는 oil
+	vector <long long> oil(N);
+	// 리터당 가격을 저장하는 cost
+	vector <long long> cost(N);
+
+	for (int i = 0; i < N; i++) {
+		if (i == N - 1)
+			oil[i] = 0;
+		else
+			cin >> oil[i];
+	}
+
+	for (int i = 0; i < N; i++)
+		cin >> cost[i];
+
+	// 일단 처음거는 무조건 기름을 넣어야 갈 수 있으므로 sum을 계산해놓기
+	// int와 int의 계산은 int의 범위를 넘어가서 인식이 안될 수도 있는 듯 함
+	// 그래서 안전하게 long long 쓰자!
+	sum += oil[0] * cost[0];
+	// 첫번째 기름집의 가격을 min으로 일단 설정
+	min = cost[0];
+
+	for (int i = 1; i < N; i++) {
+		// 새로 마주한 기름집의 가격이 더 저렴한 경우 바꿔주기
+		if (cost[i] < min) {
+			min = cost[i];
+		}
+
+		sum += min * oil[i];
+	}
+
+	cout << sum;
+}
