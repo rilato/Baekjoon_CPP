@@ -1,0 +1,60 @@
+// brute force로 최소 높이부터 최대 높이까지 하나 하나 모두 훑는다.
+
+#include <iostream>
+#include <climits>
+
+using namespace std;
+
+int N, M, B;
+int arr[501][501] = { 0, };
+int height = 0;
+int minTime = INT_MAX;
+
+int main() {
+	int min = INT_MAX;
+	int max = 0;
+
+	cin >> N >> M >> B;
+
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < M; j++) {
+			cin >> arr[i][j];
+
+			if (arr[i][j] < min)
+				min = arr[i][j];
+			if (arr[i][j] > max)
+				max = arr[i][j];
+		}
+	}
+
+	for (int h = min; h <= max; h++) {
+		int buildBlock = 0;
+		int removeBlock = 0;
+
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < M; j++) {
+				// 현재의 높이 h보다 더 많이 쌓아져 있는 경우
+				// removeBlock 해야 한다
+				if (h - arr[i][j] < 0)
+					removeBlock += arr[i][j] - h;
+				// 현재의 높이 h보다 덜 쌓아져 있는 경우
+				// buildBlock 해야 한다
+				if (h - arr[i][j] > 0)
+					buildBlock += h - arr[i][j];
+			}
+		}
+
+		// 제거한 블록과 기존 블록을 써서 쌓을 수 있는 경우
+		if (buildBlock <= removeBlock + B) {
+			int time = buildBlock + 2 * removeBlock;
+
+			// 걸린 시간이 최소 시간 이하일 경우, 최소 시간과 그에 해당하는 높이로 갱신한다
+			if (time <= minTime) {
+				minTime = time;
+				height = h;
+			}
+		}
+	}
+
+	cout << minTime << " " << height;
+}
