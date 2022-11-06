@@ -73,6 +73,7 @@ void merge(int low, int mid, int high, int K) {
         arr[i++] = sorted[k++];
 
         if (++cnt == K) {
+            // 위에서 i++ 해줬으므로, 결과에는 i에서 1을 다시 뺀 인덱스 값을 넣어줘야 함!
             result = arr[i - 1];
             break;
         }
