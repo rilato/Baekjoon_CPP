@@ -1,0 +1,87 @@
+// ans 초기화에서 문제 발생
+// 모든 지역의 높이가 2로 같다고 하고, 1만큼 비가 내렸으면, 안전영역은 1이므로, ans를 1로 초기화해야한다.
+
+#include <iostream>
+#include <queue>
+#include <algorithm>
+
+using namespace std;
+
+int N;
+int maxi = 0;
+int cnt = 0;
+// 모든 지역의 높이가 2로 같다고 하고, 1만큼 비가 내렸으면, 안전영역은 1이므로, ans를 1로 초기화해야한다.
+int ans = 1;
+int map[101][101];
+bool visited[101][101];
+int dx[4] = { -1, 1, 0, 0 };
+int dy[4] = { 0, 0, -1, 1 };
+queue <pair<int, int>> q;
+
+void BFS (int x, int y, int h);
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+	cin >> N;
+
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < N; j++) {
+			cin >> map[i][j];
+
+			if (map[i][j] >= maxi)
+				maxi = map[i][j];
+		}
+	}
+
+	for (int i = 1; i <= maxi; i++) {
+		for (int j = 0; j < N; j++) {
+			for (int k = 0; k < N; k++) {
+				// 수위에도 불구하고 잠기지 않는 도시들의 묶음을 카운트
+				if (!visited[j][k] && map[j][k] > i) {
+					BFS(j, k, i);
+					cnt++;
+				}
+			}
+		}
+
+		if (cnt >= ans)
+			ans = cnt;
+
+		cnt = 0;
+
+		for (int j = 0; j < N; j++) {
+			for (int k = 0; k < N; k++) {
+				visited[j][k] = false;
+			}
+		}
+	}
+
+	cout << ans;
+
+	return 0;
+}
+
+void BFS (int x, int y, int h) {
+	visited[x][y] = true;
+	q.push({ x, y });
+
+	while (!q.empty()) {
+		int tx = q.front().first;
+		int ty = q.front().second;
+
+		q.pop();
+
+		for (int i = 0; i < 4; i++) {
+			int nx = tx + dx[i];
+			int ny = ty + dy[i];
+
+			if (0 <= nx && nx < N && 0 <= ny && ny < N && !visited[nx][ny] && map[nx][ny] > h) {
+				visited[nx][ny] = true;
+				q.push({ nx, ny });
+			}
+		}
+	}
+}
