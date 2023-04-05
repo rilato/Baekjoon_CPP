@@ -2,18 +2,19 @@
 
 using namespace std;
 
-int main(void) {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
-    int ax, ay, az, bx, by, bz, cx, cy, cz;
+	int ax, ay, az;
+	int bx, by, bz;
+	int cx, cy, cz;
 
-    cin >> ax >> ay >> az >> cx >> cy >> cz;
+	cin >> ax >> ay >> az;
+	cin >> cx >> cy >> cz;
 
-    bx = cx - az;
-    by = cy / ay;
-    bz = cz - ax;
+	cout << cx - az << " " << cy / ay << " " << cz - ax;
 
-    cout << bx << ' ' << by << ' ' << bz;
+	return 0;
 }
